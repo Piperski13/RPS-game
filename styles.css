@@ -8,6 +8,15 @@ body{
     font-weight: bold;
 
 }
+.centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.verticaly-align{
+    text-align: center;
+}
 .move-icon{
     height: 50px;
 }
