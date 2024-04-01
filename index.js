@@ -32,6 +32,18 @@ function autoPlay() {
   document.querySelector('.auto-play-button').innerHTML = 'Auto Play';
  }
 }
+  const rockElement = document.querySelector('.js-rock-button');
+  rockElement.addEventListener('click',()=>{
+    playGame('rock');
+  })
+  const paperElement = document.querySelector('.js-paper-button');
+  paperElement.addEventListener('click',()=>{
+    playGame('paper');
+  })
+  const scissorsElement = document.querySelector('.js-scissors-button');
+  scissorsElement.addEventListener('click',()=>{
+    playGame('scissors');
+  })
 
  function playGame(playerMove) {
    const computerMove = pickComputerMove();
