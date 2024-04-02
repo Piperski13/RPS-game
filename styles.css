@@ -53,4 +53,5 @@ body{
 }
 .underline{
     text-decoration: underline rgb(252, 218, 0);
+    cursor: pointer;
 }

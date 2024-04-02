@@ -175,17 +175,31 @@ function showResetConfirmation(){
   //generate event on click for Yes 
   document.querySelector('.js-yes-button').addEventListener('click',()=>{
     deleteScore();
-    deleteResetConfirmation()
+    deleteResetConfirmation();
   });
   //generate event on click for No
   document.querySelector('.js-no-button').addEventListener('click',()=>{
-    deleteResetConfirmation()
+    deleteResetConfirmation();
   });
 }
 
-//delete Yes and No from sceen
+//delete Yes and No from sceen and put shortcut for instuctions
 function deleteResetConfirmation(){
-  document.querySelector('.js-reset-confirmation').innerHTML='';
+  document.querySelector('.js-reset-confirmation').innerHTML=`
+    <p class="showInstructions"><span class="underline">*Show shortcuts*</span></p>`;
+  showShortcuts();
+}
+
+function showShortcuts(){
+  document.querySelector('.showInstructions').addEventListener('click',()=>{
+    // generate whole instuction manual
+    document.querySelector('.showInstructions').innerHTML=`
+    <div class="js-reset-confirmation">
+          <p class="game-instructions"><span class="yellow">*Hint</span> -> You can use your <span class="yellow">keyboard</span> to play RPS game</p>
+          <p>Press key: <span class="yellow">(r)</span> - > rock, <span class="yellow">(p)</span> - > paper, <span class="yellow">(s)</span> - > scissors</p>
+          <p><span class="yellow">(a)</span> - > Auto Play, <span class="yellow">(Backspace)</span> -> Reset score</p></div>
+      </div>`;
+  })
 }
 
 
