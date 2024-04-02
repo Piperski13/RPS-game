@@ -18,18 +18,23 @@ let score = JSON.parse(localStorage.getItem('score')) || {
 let isAutoPlaying = false;
 let intervalId;
 
+document.querySelector('.js-auto-play-button').addEventListener('click',()=>{
+  autoPlay();
+})
+
 function autoPlay() {
   if(!isAutoPlaying){ 
-  intervalId = setInterval(()=>{
-    const playerMove = pickComputerMove();
-  playGame(playerMove);
-  },1000);
-  isAutoPlaying = true; 
-  document.querySelector('.auto-play-button').innerHTML = 'Stop';
- } else{
-  clearInterval(intervalId);
-  isAutoPlaying = false;
-  document.querySelector('.auto-play-button').innerHTML = 'Auto Play';
+    intervalId = setInterval(()=>{
+      const playerMove = pickComputerMove();
+    playGame(playerMove);
+    },1000);
+    isAutoPlaying = true; 
+    document.querySelector('.auto-play-button').innerHTML = 'Stop';
+ } 
+ else{
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+    document.querySelector('.auto-play-button').innerHTML = 'Auto Play';
  }
 }
   const rockElement = document.querySelector('.js-rock-button');
@@ -120,13 +125,67 @@ function autoPlay() {
  // code for pressing keys to play;
  const bodyElement = document.body;
  bodyElement.addEventListener('keydown',(event)=>{
-  if(event.key === 'r'){
-    playGame('rock');
-  }
-  else if(event.key === 'p'){
-    playGame('paper');
-  }
-  else if(event.key === 's'){
-    playGame('scissors');
+  switch (event.key) {
+    case 'r':
+      playGame('rock');
+      break;
+    case 'p':
+      playGame('paper');
+      break;
+    case 's':
+      playGame('scissors');
+      break;
+    case 'a':
+      autoPlay();
+      break;
+    case 'Backspace':
+      showResetConfirmation();
+      break;
+    case 'y':
+      deleteScore();
+      deleteResetConfirmation();
+      break;
+    case 'n':
+      deleteResetConfirmation();
+      break;
+    default:
+      
   }
  });
+function deleteScore(){
+  score.wins = 0;
+  score.losses = 0;
+  score.ties = 0;
+  localStorage.removeItem('score');
+  updateScoreElement();
+}
+
+//onclick Reset button
+document.querySelector('.js-reset-button').addEventListener('click',()=>{
+  showResetConfirmation();
+})
+
+function showResetConfirmation(){
+
+  //generate buttons
+  document.querySelector('.js-reset-confirmation').innerHTML = `Do you wish to reset the score? Press Y/N on keyboard
+  <button class="js-yes-button reset-score-button">Yes</button>
+  <button class="js-no-button reset-score-button">No</button>`;
+
+  //generate event on click for Yes 
+  document.querySelector('.js-yes-button').addEventListener('click',()=>{
+    deleteScore();
+    deleteResetConfirmation()
+  });
+  //generate event on click for No
+  document.querySelector('.js-no-button').addEventListener('click',()=>{
+    deleteResetConfirmation()
+  });
+}
+
+//delete Yes and No from sceen
+function deleteResetConfirmation(){
+  document.querySelector('.js-reset-confirmation').innerHTML='';
+}
+
+
