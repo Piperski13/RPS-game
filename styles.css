@@ -8,12 +8,10 @@ body{
     font-weight: bold;
 
 }
-.centered{
+/* .centered{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+
+} */
 .verticaly-align{
     text-align: center;
 }
@@ -46,4 +44,13 @@ body{
     cursor: pointer;
     border-radius: 20px;
     margin: 10px;
+}
+.game-instructions{
+    margin-top:2em;
+}
+.yellow{
+    color: rgb(252, 218, 0);
+}
+.underline{
+    text-decoration: underline rgb(252, 218, 0);
 }
