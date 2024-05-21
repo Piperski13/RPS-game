@@ -1,3 +1,10 @@
+async function loadBackend(){
+  const response = await fetch('http://127.0.0.1:3000/index.html');
+  const score = await response.json();
+  console.log(score);
+}
+loadBackend();
+
 let score = JSON.parse(localStorage.getItem('score')) || {
    wins: 0,
    losses: 0,
