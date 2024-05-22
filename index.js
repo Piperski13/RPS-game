@@ -1,7 +1,11 @@
-import {loadBackend} from './data/loadScore.js';
+import {loadScore} from './data/loadScore.js';
+import {saveScore} from './data/saveScore.js';
 async function loadPage(){
- 
-  let score = JSON.parse(localStorage.getItem('score')) || {
+
+  let serverScore = await loadScore();
+  
+  console.log(serverScore);
+  let score = serverScore || {
     wins: 0,
     losses: 0,
     ties: 0
