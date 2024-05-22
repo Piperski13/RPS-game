@@ -1,4 +1,4 @@
-export async function saveScore(){
+export async function saveScore(score){
   const response = await fetch('http://127.0.0.1:3000/score',{
     method: 'POST',
     headers: {
@@ -6,7 +6,7 @@ export async function saveScore(){
     },
     body: JSON.stringify(score)
   });
-  const score = await response.json();
-  console.log(score);
-  return score;
+  const scoreServer = await response.json();
+  console.log('saveScore finished loading');
+  return scoreServer;
 }

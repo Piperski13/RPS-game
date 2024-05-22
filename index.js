@@ -4,7 +4,6 @@ async function loadPage(){
 
   let serverScore = await loadScore();
   
-  console.log(serverScore);
   let score = serverScore || {
     wins: 0,
     losses: 0,
@@ -13,15 +12,6 @@ async function loadPage(){
 
   updateScoreElement();
 
-  /*
-  if (!score) {
-    score = {
-      wins: 0,
-      losses: 0,
-      ties: 0
-    };
-  }
-  */
   let isAutoPlaying = false;
   let intervalId;
 
@@ -57,7 +47,7 @@ async function loadPage(){
       playGame('scissors');
     })
 
-  function playGame(playerMove) {
+  async function playGame(playerMove) {
     const computerMove = pickComputerMove();
 
     let result = '';
@@ -98,7 +88,7 @@ async function loadPage(){
       score.ties += 1;
     }
 
-    localStorage.setItem('score', JSON.stringify(score));
+    await saveScore(score);
 
     updateScoreElement();
 
@@ -163,8 +153,6 @@ async function loadPage(){
     score.wins = 0;
     score.losses = 0;
     score.ties = 0;
-    localStorage.removeItem('score');
-    updateScoreElement();
   }
 
   //onclick Reset button
@@ -180,9 +168,11 @@ async function loadPage(){
     <button class="js-no-button reset-score-button">No</button>`;
 
     //generate event on click for Yes 
-    document.querySelector('.js-yes-button').addEventListener('click',()=>{
+    document.querySelector('.js-yes-button').addEventListener('click',async()=>{
       deleteScore();
       deleteResetConfirmation();
+      await saveScore(score);
+      updateScoreElement();
     });
     //generate event on click for No
     document.querySelector('.js-no-button').addEventListener('click',()=>{
