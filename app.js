@@ -9,10 +9,10 @@ app.use(cors()); //middleware
 
 let score = JSON.parse(fs.readFileSync('./backend/score.json','utf-8'));
 
-app.get('/index.html',(req,res)=>{
+app.get('/score',(req,res)=>{
   res.status(200).json(score);
 });
-app.post('/index.html',(req,res)=>{
+app.post('/score',(req,res)=>{
   const clientScore = req.body;
   fs.writeFile('./backend/score.json',JSON.stringify(clientScore),(err)=>{
     res.status(200).json(clientScore);
