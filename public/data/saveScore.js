@@ -7,6 +7,5 @@ export async function saveScore(score){
     body: JSON.stringify(score)
   });
   const scoreServer = await response.json();
-  console.log('saveScore finished loading');
   return scoreServer;
 }
