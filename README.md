@@ -21,7 +21,7 @@ To set up and run this project locally, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/username/RPS-game.git
+   git clone https://github.com/Piperski13/RPS-game.git
 2. **Navigate to the project directory:**
    `cd RPS-game`
 3. **Install the dependencies:**
